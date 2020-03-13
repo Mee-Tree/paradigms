@@ -25,14 +25,14 @@ public class ExpressionParser extends BaseParser {
         current = Token.BEGIN;
         CommonExpression result = parseExpression(MIN_PRIORITY);
         if (current != Token.END) {
-            throw new WrongBracketsException(getMessage(getPos()));
+            throw new WrongBracketsException(getMessage(getPos(), 1));
         }
         return result;
     }
 
     private void checkOperator() throws MissingOperatorException {
         if (current == Token.VARIABLE || current == Token.CONST || current == Token.CLOSE) {
-            throw new MissingOperatorException(getMessage(getPos() - 1));
+            throw new MissingOperatorException(getMessage(getPos() - 1, 1));
         }
     }
 
@@ -64,11 +64,11 @@ public class ExpressionParser extends BaseParser {
             checkOperator();
             current = Token.CONST;
         } else {
-            throw new IllegalSymbolException(getMessage(getPos()));
+            throw new IllegalSymbolException(getMessage(getPos(), 1));
         }
     }
 
-    private Const parseNumber(String sign) throws ConstOverflowException {
+    private Const parseNumber(String sign) throws WrongConstException {
         StringBuilder number = new StringBuilder(sign);
         int pos = getPos() - sign.length();
         while (Character.isDigit(ch)) {
@@ -78,7 +78,7 @@ public class ExpressionParser extends BaseParser {
         try {
             return new Const(Integer.parseInt(number.toString()));
         } catch (NumberFormatException e) {
-            throw new ConstOverflowException(getMessage(pos, getPos() + 1));
+            throw new WrongConstException(getMessage(pos, number.length()));
         }
     }
 
@@ -115,7 +115,7 @@ public class ExpressionParser extends BaseParser {
             int pos = getPos() - 1;
             result = parseExpression(MIN_PRIORITY);
             if (current != Token.CLOSE) {
-                throw new WrongBracketsException(getMessage(pos));
+                throw new WrongBracketsException(getMessage(pos, 1));
             }
         } else if (current == Token.MINUS) {
             if (!Character.isDigit(ch)) {
@@ -123,7 +123,7 @@ public class ExpressionParser extends BaseParser {
             }
             result = parseNumber("-");
         } else {
-            throw new MissingArgumentException(getMessage(getPos() - 1), current == Token.END);
+            throw new MissingArgumentException(getMessage(getPos() - 1, 1));
         }
         getNextToken();
         return result;

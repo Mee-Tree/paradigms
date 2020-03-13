@@ -24,10 +24,8 @@ public class StringSource implements ExpressionSource {
         return pos - 1;
     }
 
-    public String getMessage(int begin, int end) {
-        return data.substring(0, begin) + "|--->" +
-                data .substring(begin, end) +
-                "<---|" + data.substring(end);
+    public String getExpression() {
+        return data;
     }
 
 

@@ -5,5 +5,5 @@ public interface ExpressionSource {
     char next();
     int getPos();
     boolean startsWith(String value);
-    String getMessage(int begin, int end);
+    String getExpression();
 }

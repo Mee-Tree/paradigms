@@ -34,7 +34,7 @@ public abstract class BaseParser implements Parser {
 
     protected void expect(final char c) throws IllegalSequenceException {
         if (ch != c) {
-            throw new IllegalSequenceException("Expected '" + c + "', found '" + ch + "'.\t" + getMessage(getPos()));
+            throw new IllegalSequenceException("Expected '" + c + "', found '" + ch + "'.\t" + getMessage(getPos(), 1));
         }
         nextChar();
     }
@@ -49,12 +49,9 @@ public abstract class BaseParser implements Parser {
         return source.getPos();
     }
 
-    protected String getMessage(int pos) {
-        pos = Math.max(pos, 0);
-        return getMessage(pos, pos + 1);
-    }
-
-    protected String getMessage(int begin, int end) {
-        return source.getMessage(begin, end);
+    protected String getMessage(int pos, int len) {
+    	return "\n" + source.getExpression()
+    			+ "\n" + " ".repeat(Math.max(0, pos))
+    			+ "^".repeat(len);  
     }
 }
