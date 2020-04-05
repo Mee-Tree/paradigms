@@ -15,7 +15,7 @@ jobs:
       with:
         java-version: '11.0.4'
     - name: Compile
-      run: javac tests/jstest/*.java test/jstest/functional/*.java
+      run: javac tests/expression/*.java tests/jstest/*.java tests/jstest/functional/*.java
     
     - name: Run FunctionalExpressionTest Hard
       run: java -ea --module-path=tests/graal tests/jstest/functional/FunctionalExpressionTest hard
