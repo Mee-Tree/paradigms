@@ -35,10 +35,10 @@ jobs:
     - name: Run FunctionalPieTest Hard
       run: java -ea --module-path=tests/graal tests/jstest/functional/FunctionalPieTest hard
 
-      - name: Run FunctionalPieSinCosTest Hard
+    - name: Run FunctionalPieSinCosTest Hard
       run: java -ea --module-path=tests/graal tests/jstest/functional/FunctionalPieSinCosTest hard
 
-      - name: Run FunctionalPieAvgMedTest Hard
+    - name: Run FunctionalPieAvgMedTest Hard
       run: java -ea --module-path=tests/graal tests/jstest/functional/FunctionalPieAvgMedTest hard
     
 

@@ -30,6 +30,6 @@ jobs:
       run: java -ea tests/generic/GenericCmmTest
 
     - name: Run GenericCmmUlsTest
-    run: java -ea tests/generic/GenericCmmUlsTest
+      run: java -ea tests/generic/GenericCmmUlsTest
 
       
