@@ -47,7 +47,7 @@ public class JSEngine implements Engine {
         }
 
         try {
-            engine.eval(new FileReader("javascript\\" + script, StandardCharsets.UTF_8));
+            engine.eval(new FileReader("javascript/" + script, StandardCharsets.UTF_8));
         } catch (final ScriptException e) {
             throw new EngineException("Script error", e);
         } catch (final IOException e) {
