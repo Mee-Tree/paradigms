@@ -1,8 +1,8 @@
-package expression;
+package generic.expression;
 
-import expression.exceptions.DivisionByZeroException;
-import expression.exceptions.OverflowException;
-import expression.operations.Operation;
+import exceptions.DivisionByZeroException;
+import exceptions.OverflowException;
+import generic.operations.Operation;
 
 public class Divide<T extends Number> extends AbstractBinaryOperator<T> {
     public Divide(CommonExpression<T> first, CommonExpression<T> second, Operation<T> operation) {

@@ -41,13 +41,10 @@ public abstract class AbstractQueue implements Queue {
     public Object[] toArray() {
         assert !isEmpty();
 
-        Object[] arr = new Object[size()];
-        for (int i = 0; i < size(); ++i) {
-            arr[i] = dequeue();
-            enqueue(arr[i]);
-        }
-        return arr;
+        return toArrayImpl();
     }
+
+    protected abstract Object[] toArrayImpl();
 
     public int size() {
         return size;

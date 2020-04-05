@@ -1,7 +1,7 @@
-package expression;
+package generic.expression;
 
-import expression.exceptions.EvaluatingException;
-import expression.operations.Operation;
+import generic.operations.Operation;
+import exceptions.EvaluatingException;
 
 import java.util.Objects;
 

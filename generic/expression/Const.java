@@ -1,4 +1,4 @@
-package expression;
+package generic.expression;
 
 import java.util.Objects;
 

@@ -1,7 +1,7 @@
-package expression;
+package generic.expression;
 
-import expression.exceptions.OverflowException;
-import expression.operations.Operation;
+import exceptions.OverflowException;
+import generic.operations.Operation;
 
 public class Multiply<T extends Number> extends AbstractBinaryOperator<T> {
     public Multiply(CommonExpression<T> first, CommonExpression<T> second, Operation<T> operation) {

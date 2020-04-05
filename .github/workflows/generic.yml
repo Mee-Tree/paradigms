@@ -1,0 +1,35 @@
+name: GenericTabulator Tests
+
+on:
+  [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up JDK 1.8
+      uses: actions/setup-java@v1
+      with:
+        java-version: '11.0.4'
+    - name: Compile
+      run: javac exceptions/*.java generic/*.java tests/expression/*.java tests/generic/*.java
+    
+    - name: Run GenericTest
+      run: java -ea tests/generic/GenericTest
+    
+    - name: Run GenericLsTest
+      run: java -ea tests/generic/GenericLsTest
+    
+    - name: Run GenericUlsTest
+      run: java -ea tests/generic/GenericUlsTest
+    
+    - name: Run GenericCmmTest
+      run: java -ea tests/generic/GenericCmmTest
+
+    - name: Run GenericCmmUlsTest
+    run: java -ea tests/generic/GenericCmmUlsTest
+
+      

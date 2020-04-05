@@ -1,6 +1,6 @@
-package expression;
+package generic.expression;
 
-import expression.exceptions.EvaluatingException;
+import exceptions.EvaluatingException;
 
 /**
  * @author Georgiy Korneev (kgeorgiy@kgeorgiy.info)

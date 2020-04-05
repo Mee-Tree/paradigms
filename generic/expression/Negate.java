@@ -1,7 +1,7 @@
-package expression;
+package generic.expression;
 
-import expression.exceptions.OverflowException;
-import expression.operations.Operation;
+import exceptions.OverflowException;
+import generic.operations.Operation;
 
 public class Negate<T extends Number> extends AbstractUnaryOperator<T> {
     public Negate(CommonExpression<T> expression, Operation<T> operation) {

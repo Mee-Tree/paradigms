@@ -1,6 +1,6 @@
-package expression;
+package generic.expression;
 
-import expression.exceptions.IllegalSymbolException;
+import exceptions.IllegalSymbolException;
 
 import java.util.Objects;
 

@@ -1,0 +1,45 @@
+name: FunctionalExpression Tests
+
+on:
+  [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up JDK 1.8
+      uses: actions/setup-java@v1
+      with:
+        java-version: '11.0.4'
+    - name: Compile
+      run: javac tests/jstest/*.java test/jstest/functional/*.java
+    
+    - name: Run FunctionalExpressionTest Hard
+      run: java -ea --module-path=tests/graal tests/jstest/functional/FunctionalExpressionTest hard
+    
+    - name: Run FunctionalCubeTest Hard
+      run: java -ea --module-path=tests/graal tests/jstest/functional/FunctionalCubeTest hard
+    
+    - name: Run FunctionalOneTwoTest Hard
+      run: java -ea --module-path=tests/graal tests/jstest/functional/FunctionalOneTwoTest hard
+    
+    - name: Run FunctionalIffAbsTest Hard
+      run: java -ea --module-path=tests/graal tests/jstest/functional/FunctionalIffAbsTest hard
+    
+    - name: Run FunctionalOneIffAbsTest Hard
+      run: java -ea --module-path=tests/graal tests/jstest/functional/FunctionalOneIffAbsTest hard
+    
+    - name: Run FunctionalPieTest Hard
+      run: java -ea --module-path=tests/graal tests/jstest/functional/FunctionalPieTest hard
+
+      - name: Run FunctionalPieSinCosTest Hard
+      run: java -ea --module-path=tests/graal tests/jstest/functional/FunctionalPieSinCosTest hard
+
+      - name: Run FunctionalPieAvgMedTest Hard
+      run: java -ea --module-path=tests/graal tests/jstest/functional/FunctionalPieAvgMedTest hard
+    
+
+      

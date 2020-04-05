@@ -3,6 +3,44 @@
 [Условия домашних заданий](http://www.kgeorgiy.info/courses/paradigms/homeworks.html)
 
 
+## Домашнее задание 8. Обработка ошибок на JavaScript
+
+Модификации
+ * *Базовая*
+    * Код должен находиться в файле `objectExpression.js`.
+    * [Исходный код тестов](javascript/jstest/prefix/PrefixParserTest.java)
+        * Запускать c аргументом `easy` или `hard`
+
+
+## Домашнее задание 7. Объектные выражения на JavaScript
+
+Модификации
+ * *Базовая*
+    * Код должен находиться в файле `objectExpression.js`.
+    * [Исходный код тестов](javascript/jstest/object/ObjectExpressionTest.java)
+        * Запускать c аргументом `easy`, `hard` или `bonus`.
+ * *MinMax*. Дополнительно реализовать поддержку:
+    * функций:
+        * `Min3` (`min3`) – минимум из трех аргументов, `1 2 3 min` равно 1;
+        * `Max5` (`max5`) – максимум из пяти аргументов, `1 2 3 4 5 max` равно 5;
+    * [Исходный код тестов](javascript/jstest/object/ObjectMinMaxTest.java)
+ * *PowLog*. Дополнительно реализовать поддержку:
+    * бинарных операций:
+        * `Power` (`pow`) – возведение в степень, `2 3 pow` равно 8;
+        * `Log` (`log`) – логарифм абсолютного значения аргумента
+            по абсолютному значению основания `-2 -8 log` равно 3;
+    * [Исходный код тестов](javascript/jstest/object/ObjectPowLogTest.java)
+ * *SinhCosh*. Дополнительно реализовать поддержку:
+    * унарных функций:
+        * `Sinh` (`sinh`) – гиперболический синус, `3 sinh` немного больше 10;
+        * `Cosh` (`cosh`) – гиперболический косинус, `3 cosh` немного меньше 10;
+    * [Исходный код тестов](javascript/jstest/object/ObjectSinhCoshTest.java)
+ * *Gauss*. Дополнительно реализовать поддержку:
+    * функций:
+        * `Gauss` (`gauss`) – [функция Гаусса](https://ru.wikipedia.org/wiki/%D0%93%D0%B0%D1%83%D1%81%D1%81%D0%BE%D0%B2%D0%B0_%D1%84%D1%83%D0%BD%D0%BA%D1%86%D0%B8%D1%8F);
+          от четырех аргументов: `a`, `b`, `c`, `x`.
+    * [Исходный код тестов](javascript/jstest/object/ObjectGaussTest.java)
+
 ## Домашнее задание 6. Функциональные выражения на JavaScript
 
 Модификации
@@ -10,6 +48,53 @@
     * Код должен находиться в файле `functionalExpression.js`.
     * [Исходный код тестов](javascript/jstest/functional/FunctionalExpressionTest.java)
         * Запускать c аргументом `hard` или `easy`;
+ * *Mini*
+    * Не поддерживаются бинарные операции
+    * Код находится в файле [functionalMiniExpression.js](javascript/functionalMiniExpression.js).
+    * [Исходный код тестов](javascript/jstest/functional/FunctionalMiniTest.java)
+        * Запускать c аргументом `hard` или `easy`;
+ * *PieSinCos*. Дополнительно реализовать поддержку:
+    * переменных: `y`, `z`;
+    * констант:
+        * `pi` – π;
+        * `e` – основание натурального логарифма;
+    * операций:
+        * `sin` – синус, `pi sin` равно 0;
+        * `cos` – косинус, `pi cos` равно -1.
+    * [Исходный код тестов](javascript/jstest/functional/FunctionalPieSinCosTest.java)
+        * Запускать c аргументом `hard` или `easy`
+ * *Cube*. Дополнительно реализовать поддержку:
+    * переменных: `y`, `z`;
+    * унарных функций:
+        * `cube` – возведение в куб, `2 cube` равно 8;
+        * `cuberoot` – кубический корень, `-8 cuberoot` равно -2;
+    * [Исходный код тестов](javascript/jstest/functional/FunctionalCubeTest.java)
+ * *PieAvgMed*. Дополнительно реализовать поддержку:
+    * переменных: `y`, `z`;
+    * констант:
+        * `pi` – π;
+        * `e` – основание натурального логарифма;
+    * операций:
+        * `avg5` – арифметическое среднее пяти аргументов, `1 2 3 4 5 avg5` равно 7.5;
+        * `med3` – медиана трех аргументов, `1 2 -10 med3` равно 1.
+    * [Исходный код тестов](javascript/jstest/functional/FunctionalPieAvgMedTest.java)
+        * Запускать c аргументом `hard` или `easy`
+ * *OneIffAbs*. Дополнительно реализовать поддержку:
+    * переменных: `y`, `z`;
+    * констант:
+        * `one` – 1;
+        * `two` – 2;
+    * операций:
+        * `abs` – абсолютное значение, `-2 abs` равно 2;
+        * `iff` – условный выбор:
+            если первый аргумент неотрицательный,
+            вернуть второй аргумент,
+            иначе вернуть первый третий аргумент.
+            * `one two 3 iff` равно 2
+            * `-1 -2 -3 iff` равно -3
+            * `0 one two iff` равно 1;
+    * [Исходный код тестов](javascript/jstest/functional/FunctionalOneIffAbsTest.java)
+        * Запускать c аргументом `hard` или `easy`
 
 Запуск тестов
  * Для запуска тестов используется [GraalJS](https://github.com/graalvm/graaljs)
@@ -51,6 +136,19 @@
  * [Функции высшего порядка](javascript/examples/1_3_functions-hi.js).
    Обратите внимание на реализацию функции `mCurry`.
 
+Лекция 2. Объекты и методы
+ * [Объекты](javascript/examples/2_1_objects.js)
+ * [Замыкания](javascript/examples/2_2_closures.js)
+ * [Модули](javascript/examples/2_3_modules.js)
+ * [Пример: стеки](javascript/examples/2_4_stacks.js)
+
+Лекция 3. Другие возможности
+ * [Обработка ошибок](javascript/examples/3_1_errors.js)
+ * [Чего нет в JS](javascript/examples/3_2_no.js)
+ * [Стандартная библиотека](javascript/examples/3_3_builtins.js)
+ * [Работа со свойствами](javascript/examples/3_4_properties.js)
+ * [JS 6+](javascript/examples/3_5_js6.js)
+
 
 ## Домашнее задание 5. Вычисление в различных типах
 
@@ -71,18 +169,32 @@
           Если значение не определено (например, по причине переполнения),
           то соответствующий элемент должен быть равен `null`.
     * [Исходный код тестов](java/expression/generic/GenericTest.java)
- * *Сmm* (простая)
+ * *Сmm*
     * Дополнительно реализовать унарные операции:
         * `count` – число установленных битов, `count 5` равно 2.
     * Дополнительно реализовать бинарную операцию (минимальный приоритет):
         * `min` – минимум, `2 min 3` равно 2;
         * `max` – максимум, `2 max 3` равно 3.
     * [Исходный код тестов](java/expression/generic/GenericCmmTest.java)
- * *Ls* (простая)
+ * *Ls*
     * Дополнительно реализовать поддержку режимов:
         * `l` – вычисления в `long` без проверки на переполнение;
         * `s` – вычисления в `short` без проверки на переполнение.
     * [Исходный код тестов](java/expression/generic/GenericLsTest.java)
+ * *CmmUls*
+    * Реализовать операции из модификации *Cmm*.
+    * Дополнительно реализовать поддержку режимов:
+        * `u` – вычисления в `int` без проверки на переполнение;
+        * `l` – вычисления в `long` без проверки на переполнение;
+        * `s` – вычисления в `s` без проверки на переполнение.
+    * [Исходный код тестов](java/expression/generic/GenericCmmUlsTest.java)
+ * *CmmUfb*
+    * Реализовать операции из модификации *Cmm*.
+    * Дополнительно реализовать поддержку режимов:
+        * `u` – вычисления в `int` без проверки на переполнение;
+        * `f` – вычисления в `float` без проверки на переполнение;
+        * `b` – вычисления в `byte` без проверки на переполнение.
+    * [Исходный код тестов](java/expression/generic/GenericCmmUfbTest.java)
 
 
 ## Домашнее задание 4. Очередь на связном списке

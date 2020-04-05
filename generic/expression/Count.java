@@ -1,6 +1,6 @@
-package expression;
+package generic.expression;
 
-import expression.operations.Operation;
+import generic.operations.Operation;
 
 public class Count<T extends Number> extends AbstractUnaryOperator<T> {
     public Count(CommonExpression<T> expression, Operation<T> operation) {

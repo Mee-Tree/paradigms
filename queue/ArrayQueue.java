@@ -10,7 +10,7 @@ public class ArrayQueue extends AbstractQueue {
 
     private void ensureCapacity(int capacity) {
         if (capacity == elements.length) {
-            elements = Arrays.copyOf(toArray(), 2 * elements.length);
+            elements = Arrays.copyOf(toArrayImpl(), 2 * elements.length);
             head = 0;
         }
     }
@@ -36,5 +36,21 @@ public class ArrayQueue extends AbstractQueue {
     protected void clearImpl() {
         head = 0;
         elements = new Object[SIZE];
+    }
+
+    protected Object[] toArrayImpl() {
+    	Object[] arr = new Object[size];
+        int tail = increase(head, size);
+        int tmp = head > tail ? elements.length - head : size;
+        System.arraycopy(elements, head, arr, 0, tmp);
+        if (head > tail) {
+            System.arraycopy(elements, 0, arr, tmp, tail);
+        }
+        return arr;
+    }
+
+    // for ArrayQueue Homework
+    public Object[] toArray() {
+    	return toArrayImpl();
     }
 }
