@@ -2,8 +2,10 @@ name: PrologTree Tests
 
 on:
   push:
-    paths:
-    - 'prolog/tree-map.pl'
+    branches:
+    - master
+#    paths:
+#    - 'prolog/tree-map.pl'
 
 jobs:
   build:
