@@ -59,30 +59,6 @@
 
 Для запуска тестов можно использовать скрипты
 [TestProlog.cmd](prolog/TestProlog.cmd) и [TestProlog.sh](prolog/TestProlog.sh)
- * Репозиторий должен быть скачан целиком.
- * Скрипты должны находиться в каталоге `prolog`
-    (их нельзя перемещать, но можно вызывать из других каталогов).
- * Полное имя класса теста указывается в качестве первого аргумента командной строки,
-    например, `prtest.primes.PrologPrimesTest`.
- * Тестируемое решение должно находиться в текущем каталоге.
-
-
-## Исходный код к лекциям по Prolog
-
-Запуск Prolog
- * [Windows](prolog/RunProlog.cmd)
- * [*nix](prolog/RunProlog.sh)
-
-Лекция 1. Введение в Пролог
- * [Учебный план](prolog/examples/1_1_plan.pl)
- * [Вычисления](prolog/examples/1_2_calc.pl)
- * [Списки](prolog/examples/1_3_lists.pl)
- * [Задача о расстановке ферзей](prolog/examples/1_4_queens.pl)
-
-Лекция 2. ООП в Prolog
- * [Загадка Эйнштейна](prolog/examples/2_1_einstein.pl)
- * [Арифметические выражения](prolog/examples/2_2_expressions.pl)
-
 
 ## Домашнее задание 12. Комбинаторные парсеры
 
@@ -243,53 +219,6 @@
 
 Для запуска тестов можно использовать скрипты
 [TestClojure.cmd](clojure/TestClojure.cmd) и [TestClojure.sh](clojure/TestClojure.sh)
- * Репозиторий должен быть скачан целиком.
- * Скрипты должны находиться в каталоге `clojure`
-    (их нельзя перемещать, но можно вызывать из других каталогов).
- * Полное имя класса теста указывается в качестве аргумента командной строки,
-    например, `cljtest.linear.LinearBinaryTest`.
- * Тестируемое решение должно находиться в текущем каталоге.
-
-
-## Исходный код к лекциям по Clojure
-
-Запуск Clojure
- * Консоль: [Windows](clojure/RunClojure.cmd), [*nix](clojure/RunClojure.sh)
-    * Интерактивный: `RunClojure`
-    * С выражением: `RunClojure --eval "<выражение>"`
-    * Скрипт: `RunClojure <файл скрипта>`
-    * Справка: `RunClojure --help`
- * IDE
-    * IntelliJ Idea: [плагин Cursive](https://cursive-ide.com/userguide/)
-    * Eclipse: [плагин Counterclockwise](https://doc.ccw-ide.org/documentation.html)
-
-[Скрипт со всеми примерами](clojure/examples.clj)
-
-Лекция 1. Функции
- * [Введение](clojure/examples/1_1_intro.clj)
- * [Функции](clojure/examples/1_2_functions.clj)
- * [Списки](clojure/examples/1_3_lists.clj)
- * [Вектора](clojure/examples/1_4_vectors.clj)
- * [Функции высшего порядка](clojure/examples/1_5_functions-2.clj)
-
-Лекция 2. Внешний мир
- * [Ввод-вывод](clojure/examples/2_1_io.clj)
- * [Разбор и гомоиконность](clojure/examples/2_2_read.clj)
- * [Порядки вычислений](clojure/examples/2_3_evaluation-orders.clj)
- * [Потоки](clojure/examples/2_4_streams.clj)
- * [Отображения и множества](clojure/examples/2_5_maps.clj)
-
-Лекция 3. Объекты и вычисления
- * [Прототипное наследование](clojure/examples/3_1_js-objects.clj)
- * [Классы](clojure/examples/3_2_java-objects.clj)
- * [Изменяемое состояние](clojure/examples/3_3_mutable-state.clj)
- * [Числа Чёрча](clojure/examples/3_4_church.clj)
-
-Лекция 4. Комбинаторные парсеры
- * [Базовые функции](clojure/examples/4_1_base.clj)
- * [Комбинаторы](clojure/examples/4_2_combinators.clj)
- * [JSON](clojure/examples/4_3_json.clj)
- * [Макросы](clojure/examples/4_4_macro.clj)
 
 
 ## Домашнее задание 8. Обработка ошибок на JavaScript
@@ -442,59 +371,7 @@
     * [Исходный код тестов](javascript/jstest/functional/FunctionalPieSinCosTest.java)
         * Запускать c аргументом `hard` или `easy`
 
-Запуск тестов
- * Для запуска тестов используется [GraalJS](https://github.com/graalvm/graaljs)
-   (часть проекта [GraalVM](https://www.graalvm.org/), вам не требуется их скачивать отдельно)
- * Для запуска тестов можно использовать скрипты [TestJS.cmd](javascript/TestJS.cmd) и [TestJS.sh](javascript/TestJS.sh)
-    * Репозиторий должен быть скачан целиком.
-    * Скрипты должны находиться в каталоге `javascript` (их нельзя перемещать, но можно вызывать из других каталогов).
- * Для самостоятельно запуска из консоли необходимо использовать командную строку вида:
-    `java -ea --module-path=<js>/graal --class-path <js> jstest.functional.FunctionalExpressionTest {hard|easy}`, где
-    * `-ea` – включение проверок времени исполнения;
-    * `--module-path=<js>/graal` путь к модулям Graal (здесь и далее `<js>` путь к каталогу `javascript` этого репозитория);
-    * `--class-path <js>` путь к откомпилированным тестам;
-    * {`hard`|`easy`} указание тестируемой модификации.
- * При запуске из IDE, обычно не требуется указывать `--class-path`, так как он формируется автоматически.
-   Остальные опции все равно необходимо указать.
- * Troubleshooting
-    * `Error occurred during initialization of boot layer java.lang.module.FindException: Module org.graalvm.truffle not found, required by jdk.internal.vm.compiler` – неверно указан `--module-path`;
-    * `Graal.js not found` – неверно указаны `--module-path`
-    * `Error: Could not find or load main class jstest.functional.FunctionalExpressionTest` – неверно указан `--class-path`;
-    * `Error: Could not find or load main class <other class>` – неверно указано полное имя класса теста;
-    * `Exception in thread "main" java.lang.AssertionError: You should enable assertions by running 'java -ea jstest.functional.FunctionalExpressionTest'` – не указана опция `-ea`;
-    * `First argument should be one of: "easy", "hard", found: XXX` – неверно указана сложность;
-    * `Exception in thread "main" jstest.EngineException: Script 'functionalExpression.js' not found` – в текущем каталоге отсутствует решение (`functionalExpression.js`)
-
-
-## Исходный код к лекциям по JavaScript
-
-[Скрипт с примерами](javascript/examples.js)
-
-Запуск примеров
- * [В браузере](javascript/RunJS.html)
- * Из консоли
-    * [на Java](javascript/RunJS.java): [RunJS.cmd](javascript/RunJS.cmd), [RunJS.sh](javascript/RunJS.sh)
-    * [на node.js](javascript/RunJS.node.js): `node RunJS.node.js`
-
-Лекция 1. Типы и функции
- * [Типы](javascript/examples/1_1_types.js)
- * [Функции](javascript/examples/1_2_functions.js)
- * [Функции высшего порядка](javascript/examples/1_3_functions-hi.js).
-   Обратите внимание на реализацию функции `mCurry`.
-
-Лекция 2. Объекты и методы
- * [Объекты](javascript/examples/2_1_objects.js)
- * [Замыкания](javascript/examples/2_2_closures.js)
- * [Модули](javascript/examples/2_3_modules.js)
- * [Пример: стеки](javascript/examples/2_4_stacks.js)
-
-Лекция 3. Другие возможности
- * [Обработка ошибок](javascript/examples/3_1_errors.js)
- * [Чего нет в JS](javascript/examples/3_2_no.js)
- * [Стандартная библиотека](javascript/examples/3_3_builtins.js)
- * [Работа со свойствами](javascript/examples/3_4_properties.js)
- * [JS 6+](javascript/examples/3_5_js6.js)
-
+Для запуска тестов можно использовать скрипты [TestJS.cmd](javascript/TestJS.cmd) и [TestJS.sh](javascript/TestJS.sh)
 
 ## Домашнее задание 5. Вычисление в различных типах
 
