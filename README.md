@@ -427,6 +427,7 @@
 
 
 ## Домашнее задание 4. Очередь на связном списке
+![Queue Tests](https://github.com/Mee-Tree/paradigms/workflows/Queue%20Tests/badge.svg)
 
 Модификации
  * *Базовая*
@@ -470,6 +471,7 @@
 
 
 ## Домашнее задание 3. Очередь на массиве
+![ArrayQueue Tests](https://github.com/Mee-Tree/paradigms/workflows/ArrayQueue%20Tests/badge.svg)
 
 Модификации
  * *Базовая*
