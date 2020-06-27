@@ -1,16 +1,25 @@
 #!/bin/bash
+set -euo pipefail
 
 if [[ -z "$1" ]] ; then
-    echo Usage: $(basename "$0") \<variant\>
+    echo Usage: $(basename "$0") \<full.test.ClassName\>
     exit 1
 fi
 
-mkdir -p _out
+rpath() {
+    [[ $1 = /* ]] && echo "$1" || echo "$PWD/${1#./}"
+}
 
-JS="$(dirname "$0")"
+TEST="$1"
+JS="$(dirname $(rpath "$0"))"
+REPO="$(dirname "$JS")"
+LIB="$JS/lib"
 
-javac -d "_out" "--class-path=$JS/../javascript:$JS/../java" "$JS/jstest/functional/FunctionalExpressionTest.java" \
-    && java \
-        -ea \
-        "--module-path=$JS/graal" \
-        "--class-path=_out" jstest.functional.FunctionalExpressionTest "$1"
+javac \
+    -d "__out" \
+    "--class-path=$LIB/*:$REPO/java:$REPO/javascript" \
+    "$JS/${TEST//\.//}.java"
+java \
+    -ea \
+    "--class-path=$LIB/*:__out" \
+    "$TEST" "${2-}"
