@@ -3,7 +3,7 @@ name: ClojureObjectParsing Tests
 on:
   push:
     paths:
-      - 'clojure/expression.clj'
+    - 'clojure/expression.clj'
 
 jobs:
   build:
@@ -11,18 +11,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
-      - name: Set up JDK
-        uses: actions/setup-java@v1
-        with:
-          java-version: '11.0.4'
+    - uses: actions/checkout@v2
+    - name: Set up JDK
+      uses: actions/setup-java@v1
+      with:
+        java-version: '11.0.4'
 
-      - name: Run ClojureObjectParsingTest
-        run: |
-          cd clojure
-          ./TestClojure.sh cljtest.parsing.ClojureObjectParsingTest hard
+    - name: Run ClojureObjectParsingTest
+      run: |
+        cd clojure
+        ./TestClojure.sh cljtest.parsing.ClojureObjectParsingTest hard
 
-      - name: Run ClojureBitwiseParsingTest
-        run: |
-          cd clojure
-          ./TestClojure.sh cljtest.parsing.ClojureBitwiseParsingTest hard
+    - name: Run ClojureBitwiseParsingTest
+      run: |
+        cd clojure
+        ./TestClojure.sh cljtest.parsing.ClojureBitwiseParsingTest hard

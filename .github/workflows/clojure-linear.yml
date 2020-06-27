@@ -3,7 +3,7 @@ name: Linear Tests
 on:
   push:
     paths:
-      - 'clojure/linear.clj'
+    - 'clojure/linear.clj'
 
 jobs:
   build:
@@ -11,18 +11,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
-      - name: Set up JDK
-        uses: actions/setup-java@v1
-        with:
-          java-version: '11.0.4'
+    - uses: actions/checkout@v2
+    - name: Set up JDK
+      uses: actions/setup-java@v1
+      with:
+        java-version: '11.0.4'
 
-      - name: Run LinearNaryTest
-        run: |
-          cd clojure
-          ./TestClojure.sh cljtest.linear.LinearNaryTest
+    - name: Run LinearNaryTest
+      run: |
+        cd clojure
+        ./TestClojure.sh cljtest.linear.LinearNaryTest
 
-      - name: Run LinearShapelessTest
-        run: |
-          cd clojure
-          ./TestClojure.sh cljtest.linear.LinearShapelessTest
+    - name: Run LinearShapelessTest
+      run: |
+        cd clojure
+        ./TestClojure.sh cljtest.linear.LinearShapelessTest
