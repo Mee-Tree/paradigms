@@ -1,0 +1,35 @@
+name: ArrayQueue Tests
+
+on:
+  push:
+    paths:
+    - 'java/queue/ArrayQueue.java'
+    - 'java/queue/ArrayQueueADT.java'
+    - 'java/queue/ArrayQueueModule.java'
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up JDK
+      uses: actions/setup-java@v1
+      with:
+        java-version: '11.0.4'
+
+    - name: Compile
+      run: |
+        cd java
+        javac -d __out base/*.java queue/ArrayQueue*.java
+
+    - name: Run ArrayQueueTest
+      run: |
+        cd java
+        java -ea -cp __out queue.ArrayQueueTest
+
+    - name: Run ArrayQueueToArrayTest
+      run: |
+        cd java
+        java -ea -cp __out queue.ArrayQueueToArrayTest
