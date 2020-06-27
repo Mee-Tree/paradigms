@@ -1,0 +1,58 @@
+name: Functional Tests
+
+on:
+  push:
+    paths:
+    - 'javascript/functionalExpression.js'
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up JDK
+      uses: actions/setup-java@v1
+      with:
+        java-version: '11.0.4'
+
+    - name: Run FunctionalExpressionTest
+      run: |
+        cd javascript
+        ./TestJS.sh jstest.functional.FunctionalExpressionTest hard
+
+    - name: Run FunctionalCubeTest
+      run: |
+        cd javascript
+        ./TestJS.sh jstest.functional.FunctionalCubeTest hard
+
+    - name: Run FunctionalPieTest
+      run: |
+        cd javascript
+        ./TestJS.sh jstest.functional.FunctionalPieTest hard
+
+    - name: Run FunctionalOneTwoTest
+      run: |
+        cd javascript
+        ./TestJS.sh jstest.functional.FunctionalOneTwoTest hard
+
+    - name: Run FunctionalIffAbsTest
+      run: |
+        cd javascript
+        ./TestJS.sh jstest.functional.FunctionalIffAbsTest hard
+
+    - name: Run FunctionalOneIffAbsTest
+      run: |
+        cd javascript
+        ./TestJS.sh jstest.functional.FunctionalOneIffAbsTest hard
+
+    - name: Run FunctionalPieAvgMedTest
+      run: |
+        cd javascript
+        ./TestJS.sh jstest.functional.FunctionalPieAvgMedTest hard
+
+    - name: Run FunctionalPieSinCosTest
+      run: |
+        cd javascript
+        ./TestJS.sh jstest.functional.FunctionalPieSinCosTest hard
