@@ -3,6 +3,7 @@
 [Условия домашних заданий](http://www.kgeorgiy.info/courses/paradigms/homeworks.html)
 
 ## Домашнее задание 14. Дерево поиска на Prolog
+![PrologTree Tests](https://github.com/Mee-Tree/paradigms/workflows/PrologTree%20Tests/badge.svg?branch=master)
 
 Модификации
  * *Базовая*
