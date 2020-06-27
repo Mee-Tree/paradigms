@@ -2,8 +2,10 @@ name: Functional Tests
 
 on:
   push:
-    paths:
-    - 'javascript/functionalExpression.js'
+    branches:
+    - master
+#    paths:
+#    - 'javascript/functionalExpression.js'
 
 jobs:
   build:
