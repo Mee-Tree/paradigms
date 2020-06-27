@@ -267,6 +267,7 @@
     * [Исходный код тестов](javascript/jstest/prefix/PostfixMeanVarTest.java)
 
 ## Домашнее задание 7. Объектные выражения на JavaScript
+![Object Tests](https://github.com/Mee-Tree/paradigms/workflows/Object%20Tests/badge.svg)
 
 Модификации
  * *Базовая*
@@ -510,6 +511,7 @@
 
 
 ## Домашнее задание 2. Бинарный поиск
+![BinarySearch Tests](https://github.com/Mee-Tree/paradigms/workflows/BinarySearch%20Tests/badge.svg)
 
 Модификации
  * *Базовая*
