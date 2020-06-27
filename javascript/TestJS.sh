@@ -13,7 +13,7 @@ rpath() {
 TEST="$1"
 JS="$(dirname $(rpath "$0"))"
 REPO="$(dirname "$JS")"
-LIB="$JS/lib"
+LIB="$JS/graal"
 
 javac \
     -d "__out" \
@@ -21,5 +21,6 @@ javac \
     "$JS/${TEST//\.//}.java"
 java \
     -ea \
+    "--module-path=$LIB" \
     "--class-path=$LIB/*:__out" \
     "$TEST" "${2-}"
