@@ -21,6 +21,5 @@ javac \
     "$JS/${TEST//\.//}.java"
 java \
     -ea \
-    "--module-path=$LIB" \
     "--class-path=$LIB/*:__out" \
     "$TEST" "${2-}"

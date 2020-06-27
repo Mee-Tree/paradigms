@@ -301,6 +301,7 @@
     * [Исходный код тестов](javascript/jstest/object/ObjectGaussTest.java)
 
 ## Домашнее задание 6. Функциональные выражения на JavaScript
+![Functional Tests](https://github.com/Mee-Tree/paradigms/workflows/Functional%20Tests/badge.svg)
 
 Модификации
  * *Базовая*
