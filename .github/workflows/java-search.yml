@@ -3,7 +3,7 @@ name: BinarySearch Tests
 on:
   push:
     paths:
-      - 'java/search/'
+    - 'java/search/BinarySearchSpan.java'
 
 jobs:
   build:
