@@ -1,0 +1,29 @@
+name: PrologTree Tests
+
+on:
+  push:
+    paths:
+    - 'prolog/tree-map.pl'
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up JDK
+      uses: actions/setup-java@v1
+      with:
+        java-version: '11.0.4'
+
+    - name: Run PrologTreeTest
+      run: |
+        cd prolog
+        ./TestProlog.sh prtest.tree.PrologTreeTest hard
+
+    - name: Run PrologTreeMinMaxTest
+      run: |
+        cd prolog
+        ./TestProlog.sh prtest.tree.PrologTreeMinMaxTest hard
+      

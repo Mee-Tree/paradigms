@@ -1,0 +1,34 @@
+name: PrologPrimes Tests
+
+on:
+  push:
+    paths:
+    - 'prolog/primes.pl'
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up JDK
+      uses: actions/setup-java@v1
+      with:
+        java-version: '11.0.4'
+
+    - name: Run PrologPrimesTest
+      run: |
+        cd prolog
+        ./TestProlog.sh prtest.primes.PrologPrimesTest hard
+
+    - name: Run PrologNthTest
+      run: |
+        cd prolog
+        ./TestProlog.sh prtest.primes.PrologNthTest hard
+
+    - name: Run PrologPalindromeTest
+      run: |
+        cd prolog
+        ./TestProlog.sh prtest.primes.PrologPalindromeTest hard
+
