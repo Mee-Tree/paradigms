@@ -61,6 +61,7 @@
 [TestProlog.cmd](prolog/TestProlog.cmd) и [TestProlog.sh](prolog/TestProlog.sh)
 
 ## Домашнее задание 12. Комбинаторные парсеры
+![ClojureObjectParsing Tests](https://github.com/Mee-Tree/paradigms/workflows/ClojureObjectParsing%20Tests/badge.svg)
 
 Модификации
  * *Базовая*
@@ -97,6 +98,7 @@
 
 
 ## Домашнее задание 11. Объектные выражения на Clojure
+![ClojureObject Tests](https://github.com/Mee-Tree/paradigms/workflows/ClojureObject%20Tests/badge.svg)
 
 Модификации
  * *Базовая*
@@ -130,6 +132,7 @@
     * [Исходный код тестов](clojure/cljtest/object/ClojureObjectSumexpSoftmaxTest.java)
 
 ## Домашнее задание 10. Функциональные выражения на Clojure
+![ClojureFunctional Tests](https://github.com/Mee-Tree/paradigms/workflows/ClojureFunctional%20Tests/badge.svg)
 
 Модификации
  * *Базовая*
