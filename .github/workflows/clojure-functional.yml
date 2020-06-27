@@ -1,0 +1,28 @@
+name: ClojureFunctional Tests
+
+on:
+  push:
+    paths:
+      - 'clojure/expression.clj'
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up JDK
+        uses: actions/setup-java@v1
+        with:
+          java-version: '11.0.4'
+
+      - name: Run ClojureFunctionalExpressionTest
+        run: |
+          cd clojure
+          ./TestClojure.sh cljtest.functional.ClojureFunctionalExpressionTest hard
+
+      - name: Run ClojureFunctionalMinMaxTest
+        run: |
+          cd clojure
+          ./TestClojure.sh cljtest.functional.ClojureFunctionalMinMaxTest hard

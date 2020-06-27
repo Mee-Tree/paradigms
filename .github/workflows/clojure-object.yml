@@ -1,0 +1,28 @@
+name: ClojureObject Tests
+
+on:
+  push:
+    paths:
+      - 'clojure/expression.clj'
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up JDK
+        uses: actions/setup-java@v1
+        with:
+          java-version: '11.0.4'
+
+      - name: Run ClojureObjectExpressionTest
+        run: |
+          cd clojure
+          ./TestClojure.sh cljtest.object.ClojureObjectExpressionTest hard
+
+      - name: Run ClojureObjectPwLgTest
+        run: |
+          cd clojure
+          ./TestClojure.sh cljtest.object.ClojureObjectPwLgTest hard

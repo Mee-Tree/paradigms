@@ -164,6 +164,7 @@
 
 
 ## Домашнее задание 9. Линейная алгебра на Clojure
+![Linear Tests](https://github.com/Mee-Tree/paradigms/workflows/Linear%20Tests/badge.svg)
 
 Модификации
  * *Базовая*
