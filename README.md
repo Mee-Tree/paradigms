@@ -3,7 +3,7 @@
 [Условия домашних заданий](http://www.kgeorgiy.info/courses/paradigms/homeworks.html)
 
 ## Домашнее задание 14. Дерево поиска на Prolog
-![PrologTree Tests](https://github.com/Mee-Tree/paradigms/workflows/PrologTree%20Tests/badge.svg?branch=master)
+![PrologTree Tests](https://github.com/Mee-Tree/paradigms/workflows/PrologTree%20Tests/badge.svg)
 
 Модификации
  * *Базовая*
@@ -34,6 +34,7 @@
 
 
 ## Домашнее задание 13. Простые числа на Prolog
+![PrologPrimes Tests](https://github.com/Mee-Tree/paradigms/workflows/PrologPrimes%20Tests/badge.svg)
 
 Модификации
  * *Базовая*
