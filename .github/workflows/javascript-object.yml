@@ -1,0 +1,38 @@
+name: Object Tests
+
+on:
+  push:
+    paths:
+    - 'javascript/objectExpression.js'
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up JDK
+      uses: actions/setup-java@v1
+      with:
+        java-version: '11.0.4'
+
+    - name: Run ObjectExpressionTest (bonus)
+      run: |
+        cd javascript
+        ./TestJS.sh jstest.object.ObjectExpressionTest bonus
+
+    - name: Run ObjectSinhCoshTest (bonus)
+      run: |
+        cd javascript
+        ./TestJS.sh jstest.object.ObjectSinhCoshTest bonus
+
+    - name: Run ObjectPowLogTest
+      run: |
+        cd javascript
+        ./TestJS.sh jstest.object.ObjectPowLogTest hard
+
+    - name: Run ObjectGaussTest
+      run: |
+        cd javascript
+        ./TestJS.sh jstest.object.ObjectGaussTest hard
