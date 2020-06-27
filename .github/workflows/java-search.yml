@@ -1,0 +1,28 @@
+name: BinarySearch Tests
+
+on:
+  push:
+    paths:
+      - 'java/search/'
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up JDK
+      uses: actions/setup-java@v1
+      with:
+        java-version: '11.0.4'
+
+    - name: Compile
+      run: |
+        cd java
+        javac -d __out base/*.java search/*.java
+
+    - name: Run BinarySearchSpanTest
+      run: |
+        cd java
+        java -ea -cp __out search.BinarySearchSpanTest
