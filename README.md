@@ -2,7 +2,7 @@
 
 [Условия домашних заданий](http://www.kgeorgiy.info/courses/paradigms/homeworks.html)
 
-## Домашнее задание 14. Дерево поиска на Prolog
+## [Домашнее задание 14. Дерево поиска на Prolog](prolog/tree-map.pl)
 ![PrologTree Tests](https://github.com/Mee-Tree/paradigms/workflows/PrologTree%20Tests/badge.svg)
 
 Модификации
@@ -33,7 +33,7 @@
     * [Исходный код тестов](prolog/prtest/tree/PrologTreeSubmapTest.java)
 
 
-## Домашнее задание 13. Простые числа на Prolog
+## [Домашнее задание 13. Простые числа на Prolog](prolog/primes.pl)
 ![PrologPrimes Tests](https://github.com/Mee-Tree/paradigms/workflows/PrologPrimes%20Tests/badge.svg)
 
 Модификации
@@ -60,7 +60,7 @@
 Для запуска тестов можно использовать скрипты
 [TestProlog.cmd](prolog/TestProlog.cmd) и [TestProlog.sh](prolog/TestProlog.sh)
 
-## Домашнее задание 12. Комбинаторные парсеры
+## [Домашнее задание 12. Комбинаторные парсеры](clojure/expression.clj#L151)
 ![ClojureObjectParsing Tests](https://github.com/Mee-Tree/paradigms/workflows/ClojureObjectParsing%20Tests/badge.svg)
 
 Модификации
@@ -97,7 +97,7 @@
     * [Исходный код тестов](clojure/cljtest/parsing/ClojureImplIffParsingTest.java)
 
 
-## Домашнее задание 11. Объектные выражения на Clojure
+## [Домашнее задание 11. Объектные выражения на Clojure](clojure/expression.clj#L37)
 ![ClojureObject Tests](https://github.com/Mee-Tree/paradigms/workflows/ClojureObject%20Tests/badge.svg)
 
 Модификации
@@ -131,7 +131,7 @@
         * `Softmax` (`Softmax`) – [softmax](https://ru.wikipedia.org/wiki/Softmax) первого аргумента, `(softmax 1 2 3)` примерно равно 0.09;
     * [Исходный код тестов](clojure/cljtest/object/ClojureObjectSumexpSoftmaxTest.java)
 
-## Домашнее задание 10. Функциональные выражения на Clojure
+## [Домашнее задание 10. Функциональные выражения на Clojure](clojure/expression.clj)
 ![ClojureFunctional Tests](https://github.com/Mee-Tree/paradigms/workflows/ClojureFunctional%20Tests/badge.svg)
 
 Модификации
@@ -166,7 +166,7 @@
     * [Исходный код тестов](clojure/cljtest/functional/ClojureFunctionalSumexpSoftmaxTest.java)
 
 
-## Домашнее задание 9. Линейная алгебра на Clojure
+## [Домашнее задание 9. Линейная алгебра на Clojure](clojure/linear.clj)
 ![Linear Tests](https://github.com/Mee-Tree/paradigms/workflows/Linear%20Tests/badge.svg)
 
 Модификации
@@ -266,7 +266,7 @@
         * `Var` (`var`) – дисперсию аргументов, `(2 5 11 var)` равно 14;
     * [Исходный код тестов](javascript/jstest/prefix/PostfixMeanVarTest.java)
 
-## Домашнее задание 7. Объектные выражения на JavaScript
+## [Домашнее задание 7. Объектные выражения на JavaScript](javascript/objectExpression.js)
 ![Object Tests](https://github.com/Mee-Tree/paradigms/workflows/Object%20Tests/badge.svg)
 
 Модификации
@@ -301,7 +301,7 @@
           от четырех аргументов: `a`, `b`, `c`, `x`.
     * [Исходный код тестов](javascript/jstest/object/ObjectGaussTest.java)
 
-## Домашнее задание 6. Функциональные выражения на JavaScript
+## [Домашнее задание 6. Функциональные выражения на JavaScript](javascript/functionalExpression.js)
 ![Functional Tests](https://github.com/Mee-Tree/paradigms/workflows/Functional%20Tests/badge.svg)
 
 Модификации
@@ -426,7 +426,7 @@
     * [Исходный код тестов](java/expression/generic/GenericCmmUfbTest.java)
 
 
-## Домашнее задание 4. Очередь на связном списке
+## [Домашнее задание 4. Очередь на связном списке](java/queue/LinkedQueue.java)
 ![Queue Tests](https://github.com/Mee-Tree/paradigms/workflows/Queue%20Tests/badge.svg)
 
 Модификации
@@ -470,7 +470,7 @@
     * [Откомпилированные тесты](artifacts/queue/QueueIfWhileTest.jar)
 
 
-## Домашнее задание 3. Очередь на массиве
+## [Домашнее задание 3. Очередь на массиве](java/queue/ArrayQueueADT.java)
 ![ArrayQueue Tests](https://github.com/Mee-Tree/paradigms/workflows/ArrayQueue%20Tests/badge.svg)
 
 Модификации
@@ -512,7 +512,7 @@
     * [Откомпилированные тесты](artifacts/queue/ArrayQueueIndexedDequeTest.jar)
 
 
-## Домашнее задание 2. Бинарный поиск
+## [Домашнее задание 2. Бинарный поиск](java/search/BinarySearchSpan.java)
 ![BinarySearch Tests](https://github.com/Mee-Tree/paradigms/workflows/BinarySearch%20Tests/badge.svg)
 
 Модификации
