@@ -3,32 +3,38 @@
 const VARS = ['x', 'y', 'z'];
 
 function Variable(name) {
-    this.name = name;
+    this.getName = function() {
+        return name;
+    }
 }
 
 Variable.prototype = {
     evaluate: function(...args) {
-        return args[VARS.indexOf(this.name)];
+        return args[VARS.indexOf(this.getName())];
     },
     diff: function(name) {
-        return name === this.name ? ONE : ZERO;
-        // return new Const(+(name === this.name));
+        return name === this.getName() ? ONE : ZERO;
+        // return new Const(+(name === this.getName()));
     },
     simplify: function() {
         return this;
     },
     toString: function() {
-        return this.name;
+        return this.getName();
     }
 };
+Variable.prototype.prefix = Variable.prototype.toString;
+Variable.prototype.postfix = Variable.prototype.toString;
 
 function Const(number) {
-    this.number = number;
+    this.getNumber = function() {
+        return number;
+    }
 }
 
 Const.prototype = {
     evaluate: function() {
-        return this.number;
+        return this.getNumber();
     },
     diff: function() {
         return ZERO;
@@ -37,41 +43,55 @@ Const.prototype = {
         return this;
     },
     toString: function() {
-        return this.number.toString();
+        return this.getNumber().toString();
     }
 };
+Const.prototype.prefix = Const.prototype.toString;
+Const.prototype.postfix = Const.prototype.toString;
 
 function Operation(symbol, ...operands) {
-    this.symbol = symbol;
-    this.operands = operands;
+    this.getSymbol = function() {
+        return symbol;
+    };
+    this.getOperands = function() {
+        return operands;
+    }
 }
 
 Operation.prototype = {
     evaluate: function(...args) {
         return this.calculate(
-            ...this.operands.map(op => op.evaluate(...args))
+            ...this.getOperands().map(op => op.evaluate(...args))
         );
     },
     simplify: function () {
-        const ops = this.operands.map(operand => operand.simplify());
-        if (ops.every(checkConst)) {
+        const ops = this.getOperands().map(operand => operand.simplify());
+        if (ops.every(isConst)) {
             return new Const(this.calculate(
-                ...ops.map(op => op.number)
+                ...ops.map(op => op.getNumber())
             ));
         }
         return this.simplifyImpl(ops);
     },
     toString: function() {
-        return this.operands.concat(this.symbol).join(' ');
+        return this.getOperands().concat(this.getSymbol()).join(' ');
+    },
+    prefix: function() {
+        return '(' + this.getSymbol() + ' ' +
+            this.getOperands().map(op => op.prefix()).join(' ') + ')'
+    },
+    postfix: function() {
+        return '(' + this.getOperands().map(op => op.postfix()).join(' ') + ' ' +
+            this.getSymbol() + ')'
     }
 };
 
-const checkConst = arg =>
+const isConst = arg =>
     arg instanceof Const;
 
-const checkEquals = (first, second) =>
-    checkConst(first) && checkConst(second) &&
-        first.number === second.number;
+const equals = (first, second) =>
+    isConst(first) && isConst(second) &&
+    first.getNumber() === second.getNumber();
 
 function createOperation(symbol, calculate, diff, simplify) {
     const result = function(...operands) {
@@ -89,7 +109,7 @@ const Negate = createOperation(
     'negate',
     a => -a,
     function(name) {
-        const [first] = this.operands;
+        const [first] = this.getOperands();
         return new Negate(first.diff(name))
     },
     (simples) => new Negate(...simples)
@@ -99,7 +119,7 @@ const Sinh = createOperation(
     'sinh',
     Math.sinh,
     function(name) {
-        const [first] = this.operands;
+        const [first] = this.getOperands();
         return new Multiply(first.diff(name), new Cosh(first))
     },
     (simples) => new Sinh(...simples)
@@ -109,7 +129,7 @@ const Cosh = createOperation(
     'cosh',
     Math.cosh,
     function(name) {
-        const [first] = this.operands;
+        const [first] = this.getOperands();
         return new Multiply(first.diff(name), new Sinh(first))
     },
     (simples) => new Cosh(...simples)
@@ -119,13 +139,13 @@ const Add = createOperation(
     '+',
     (a, b) => a + b,
     function(name) {
-        const [first, second] = this.operands;
+        const [first, second] = this.getOperands();
         return new Add(first.diff(name), second.diff(name))
     },
     (simples) => {
         const [first, second] = simples;
-        return checkEquals(first, ZERO) ?
-            second : checkEquals(second, ZERO) ?
+        return equals(first, ZERO) ?
+            second : equals(second, ZERO) ?
                 first : new Add(...simples);
     }
 );
@@ -134,13 +154,13 @@ const Subtract = createOperation(
     '-',
     (a, b) => a - b,
     function(name) {
-        const [first, second] = this.operands;
+        const [first, second] = this.getOperands();
         return new Subtract(first.diff(name),second.diff(name));
     },
     (simples) => {
         const [first, second] = simples;
-        return checkEquals(second, ZERO) ?
-            first : checkEquals(first, ZERO) ?
+        return equals(second, ZERO) ?
+            first : equals(first, ZERO) ?
                 new Negate(second) : new Subtract(...simples);
     }
 );
@@ -149,7 +169,7 @@ const Multiply = createOperation(
     '*',
     (a, b) => a * b,
     function(name) {
-        const [first, second] = this.operands;
+        const [first, second] = this.getOperands();
         return new Add(
             new Multiply(first.diff(name), second),
             new Multiply(first, second.diff(name))
@@ -157,12 +177,12 @@ const Multiply = createOperation(
     },
     (simples) => {
         const [first, second] = simples;
-        if (checkEquals(first, ZERO) || checkEquals(second, ZERO)) {
+        if (equals(first, ZERO) || equals(second, ZERO)) {
             return ZERO;
         }
 
-        return checkEquals(first, ONE) ?
-            second : checkEquals(second, ONE) ?
+        return equals(first, ONE) ?
+            second : equals(second, ONE) ?
                 first : new Multiply(...simples);
     }
 );
@@ -171,7 +191,7 @@ const Divide = createOperation(
     '/',
     (a, b) => a / b,
     function(name) {
-        const [first, second] = this.operands;
+        const [first, second] = this.getOperands();
         return new Divide(
             new Subtract(
                 new Multiply(first.diff(name), second),
@@ -182,8 +202,8 @@ const Divide = createOperation(
     },
     (simples) => {
         const [first, second] = simples;
-        return checkEquals(first, ZERO) ?
-            ZERO : checkEquals(second, ONE) ?
+        return equals(first, ZERO) ?
+            ZERO : equals(second, ONE) ?
                 first : new Divide(...simples);
     }
 );
@@ -192,7 +212,7 @@ const Power = createOperation(
     'pow',
     Math.pow,
     function(name) {
-        const [first, second] = this.operands;
+        const [first, second] = this.getOperands();
         const exp = new Multiply(
             new Log(E, first),
             second
@@ -210,8 +230,8 @@ const Log = createOperation(
     'log',
     (a, b) => Math.log(Math.abs(b)) / Math.log(Math.abs(a)),
     function(name) {
-        const [first, second] = this.operands;
-        if (checkEquals(first, E)) {
+        const [first, second] = this.getOperands();
+        if (equals(first, E)) {
             return new Divide(second.diff(name), second);
         }
         return new Divide(new Log(E, second), new Log(E, first)).diff(name);
@@ -223,7 +243,7 @@ const Gauss = createOperation(
     'gauss',
     (a, b, c, x) => a * Math.exp((b - x) * (x - b) / (2 * c * c)),
     function(name) {
-        const [a, b, c, x] = this.operands;
+        const [a, b, c, x] = this.getOperands();
         const exp = new Divide(
             new Multiply(
                 new Subtract(b, x),
@@ -240,6 +260,24 @@ const Gauss = createOperation(
     (simples) => new Gauss(...simples) // TODO
 );
 
+const Sum = createOperation(
+    'sum',
+    (...ops) => ops.reduce((sum, cur) => sum + cur, 0),
+    function(name) {
+        return new Sum(...this.getOperands().map(op => op.diff(name)));
+    },
+    (simples) => new Sum(...simples)
+);
+
+const Avg = createOperation(
+    'avg',
+    (...ops) => Sum.prototype.calculate(...ops) / ops.length,
+    function(name) {
+        return new Avg(...this.getOperands().map(op => op.diff(name)));
+    },
+    (simples) => new Avg(...simples)
+);
+
 const TWO = new Const(2);
 const ONE = new Const(1);
 const ZERO = new Const(0);
@@ -252,6 +290,9 @@ const VARIABLES = {
 };
 
 const OPERATIONS = {
+    'avg':      Avg,
+    'sum':      Sum,
+
     'gauss':    Gauss,
 
     '+':        Add,
@@ -280,3 +321,116 @@ const parse = str => {
             return stack;
         }, []).pop();
 };
+
+/* ################################################################# */
+
+include('./exceptions.js');
+
+function BaseParser(expression) {
+    this.expression = expression;
+    this.index = 0;
+    this.ch = '';
+}
+BaseParser.prototype.nextChar = function() {
+    this.ch = this.index < this.expression.length ?
+        this.expression[this.index++] : '\0';
+};
+
+function ExpressionParser(expression, mode) {
+    BaseParser.call(this, expression);
+    this.mode = mode;
+    this.curToken = '';
+    this.nextToken();
+}
+
+ExpressionParser.prototype = Object.create(BaseParser.prototype);
+ExpressionParser.prototype.nextToken = function() {
+    this.skipWhitespace();
+    if (this.ch === '(' || this.ch === ')') {
+        this.curToken = this.ch;
+        this.nextChar();
+    } else {
+        this.curToken = '';
+        while (this.ch !== '(' && this.ch !== ')' && this.ch.trim() !== '' && this.ch !== '\0') {
+            this.curToken += this.ch;
+            this.nextChar();
+        }
+    }
+    this.skipWhitespace();
+};
+ExpressionParser.prototype.skipWhitespace = function() {
+    while (this.ch.trim() === '') {
+        this.nextChar();
+    }
+};
+
+ExpressionParser.prototype.parseArgs = function() {
+    const args = [];
+    while (this.curToken !== ')' && this.curToken !== '' && !(this.curToken in OPERATIONS)) {
+        args.push(this.parse());
+        this.nextToken();
+    }
+    return args;
+};
+ExpressionParser.prototype.parse = function() {
+    if (this.curToken === '(') {
+        this.nextToken();
+        let args = [];
+
+        if (this.mode === "postfix") {
+            args = this.parseArgs();
+        }
+
+        if (!(this.curToken in OPERATIONS)) {
+            throw new MissingOperationException(this.index);
+        }
+        const op = OPERATIONS[this.curToken];
+        const symbol = this.curToken;
+        this.nextToken();
+
+        if (this.mode === "prefix") {
+            args = this.parseArgs();
+        }
+
+        if (this.curToken !== ')') {
+            throw new MissingParenthesisException(this.index);
+        } else if (op.arity > args.length) {
+            throw new MissingArgumentException(this.index, symbol);
+        } else if (op.arity !== 0 && op.arity < args.length) {
+            throw new RedundantArgumentException(this.index, symbol);
+        }
+        return new op(...args);
+    } else if (this.curToken in VARIABLES) {
+        return VARIABLES[this.curToken];
+    } else if (isNumber(this.curToken)) {
+        return new Const(parseInt(this.curToken));
+    } else {
+        throw new IllegalSequenceException(this.index, this.curToken);
+    }
+};
+
+function isNumber(arg) {
+    let ind = (arg[0] === '-' ? 1 : 0);
+    if (arg.length === ind) {
+        return false;
+    }
+    for (; ind < arg.length; ++ind) {
+        if (arg[ind] < '0' || arg[ind] > '9') {
+            return false;
+        }
+    }
+    return true;
+}
+
+const parseMode = (str, mode) => {
+    const parser = new ExpressionParser(str, mode);
+    const result = parser.parse();
+    parser.nextToken();
+    if (parser.curToken !== '') {
+        throw new IllegalSequenceException(parser.index, parser.curToken);
+    }
+    return result;
+};
+
+const parsePrefix = str => parseMode(str, "prefix");
+const parsePostfix = str => parseMode(str, "postfix");
