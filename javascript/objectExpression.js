@@ -54,7 +54,7 @@ Operation.prototype = {
     },
     simplify: function () {
         const ops = this.operands.map(operand => operand.simplify());
-        if (ops.every(checkConst)) {
+        if (ops.every(isConst)) {
             return new Const(this.calculate(
                 ...ops.map(op => op.number)
             ));
@@ -66,11 +66,11 @@ Operation.prototype = {
     }
 };
 
-const checkConst = arg =>
+const isConst = arg =>
     arg instanceof Const;
 
-const checkEquals = (first, second) =>
-    checkConst(first) && checkConst(second) &&
+const equals = (first, second) =>
+    isConst(first) && isConst(second) &&
         first.number === second.number;
 
 function createOperation(symbol, calculate, diff, simplify) {
@@ -124,8 +124,8 @@ const Add = createOperation(
     },
     (simples) => {
         const [first, second] = simples;
-        return checkEquals(first, ZERO) ?
-            second : checkEquals(second, ZERO) ?
+        return equals(first, ZERO) ?
+            second : equals(second, ZERO) ?
                 first : new Add(...simples);
     }
 );
@@ -135,12 +135,12 @@ const Subtract = createOperation(
     (a, b) => a - b,
     function(name) {
         const [first, second] = this.operands;
-        return new Subtract(first.diff(name),second.diff(name));
+        return new Subtract(first.diff(name), second.diff(name));
     },
     (simples) => {
         const [first, second] = simples;
-        return checkEquals(second, ZERO) ?
-            first : checkEquals(first, ZERO) ?
+        return equals(second, ZERO) ?
+            first : equals(first, ZERO) ?
                 new Negate(second) : new Subtract(...simples);
     }
 );
@@ -157,12 +157,12 @@ const Multiply = createOperation(
     },
     (simples) => {
         const [first, second] = simples;
-        if (checkEquals(first, ZERO) || checkEquals(second, ZERO)) {
+        if (equals(first, ZERO) || equals(second, ZERO)) {
             return ZERO;
         }
 
-        return checkEquals(first, ONE) ?
-            second : checkEquals(second, ONE) ?
+        return equals(first, ONE) ?
+            second : equals(second, ONE) ?
                 first : new Multiply(...simples);
     }
 );
@@ -182,8 +182,8 @@ const Divide = createOperation(
     },
     (simples) => {
         const [first, second] = simples;
-        return checkEquals(first, ZERO) ?
-            ZERO : checkEquals(second, ONE) ?
+        return equals(first, ZERO) ?
+            ZERO : equals(second, ONE) ?
                 first : new Divide(...simples);
     }
 );
@@ -211,7 +211,7 @@ const Log = createOperation(
     (a, b) => Math.log(Math.abs(b)) / Math.log(Math.abs(a)),
     function(name) {
         const [first, second] = this.operands;
-        if (checkEquals(first, E)) {
+        if (equals(first, E)) {
             return new Divide(second.diff(name), second);
         }
         return new Divide(new Log(E, second), new Log(E, first)).diff(name);
