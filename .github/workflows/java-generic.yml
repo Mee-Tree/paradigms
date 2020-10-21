@@ -1,0 +1,33 @@
+name: Generic Tests
+
+on:
+  push:
+    paths:
+      - 'java/expression/generic/*.java'
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up JDK
+        uses: actions/setup-java@v1
+        with:
+          java-version: '11.0.4'
+
+      - name: Compile
+        run: |
+          cd java
+          javac -d __out base/*.java expression/generic/*.java
+
+      - name: Run GenericCmmUfbTest
+        run: |
+          cd java
+          java -ea -cp __out expression.generic.GenericCmmUfbTest
+
+      - name: Run GenericCmmUlsTest
+        run: |
+          cd java
+          java -ea -cp __out expression.generic.GenericCmmUlsTest

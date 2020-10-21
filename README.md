@@ -379,7 +379,8 @@
 
 Для запуска тестов можно использовать скрипты [TestJS.cmd](javascript/TestJS.cmd) и [TestJS.sh](javascript/TestJS.sh)
 
-## Домашнее задание 5. Вычисление в различных типах
+## [Домашнее задание 5. Вычисление в различных типах](java/expression/generic/GenericTabulator.java)
+![Generic Tests](https://github.com/Mee-Tree/paradigms/workflows/Generic%20Tests/badge.svg)
 
 Модификации
  * *Базовая*
