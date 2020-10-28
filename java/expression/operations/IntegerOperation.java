@@ -4,11 +4,11 @@ package expression.operations;
 import expression.exceptions.*;
 
 public class IntegerOperation implements Operation<Integer> {
-	boolean CHECKED;
+    boolean CHECKED;
 
-	public IntegerOperation(boolean check) {
-		this.CHECKED = check;
-	}
+    public IntegerOperation(boolean check) {
+        this.CHECKED = check;
+    }
 
     public Integer parse(final String a) throws ParsingException {
         try {
@@ -41,7 +41,7 @@ public class IntegerOperation implements Operation<Integer> {
 
     public Integer add(final Integer a, final Integer b) throws EvaluatingException {
         if (CHECKED) {
-        	checkAdd(a, b);
+            checkAdd(a, b);
         }
         return a + b;
     }
@@ -57,7 +57,7 @@ public class IntegerOperation implements Operation<Integer> {
 
     public Integer subtract(final Integer a, final Integer b) throws EvaluatingException {
         if (CHECKED) {
-        	checkSubtract(a, b);
+            checkSubtract(a, b);
         }
         return a - b;
     }
@@ -76,7 +76,7 @@ public class IntegerOperation implements Operation<Integer> {
 
     public Integer multiply(final Integer a, final Integer b) throws EvaluatingException {
         if (CHECKED) {
-        	checkMultiply(a, b);
+            checkMultiply(a, b);
         }
         return a * b;
     }
@@ -88,11 +88,11 @@ public class IntegerOperation implements Operation<Integer> {
     }
 
     public Integer divide(final Integer a, final Integer b) throws EvaluatingException {
-    	if (b == 0) {
+        if (b == 0) {
             throw new DivisionByZeroException();
         }
         if (CHECKED) {
-        	checkDivide(a, b);
+            checkDivide(a, b);
         }
         return a / b;
     }
@@ -105,7 +105,7 @@ public class IntegerOperation implements Operation<Integer> {
 
     public Integer negate(final Integer a) throws EvaluatingException {
         if (CHECKED) {
-        	checkNegate(a);
+            checkNegate(a);
         }
         return -a;
     }
@@ -126,15 +126,15 @@ public class IntegerOperation implements Operation<Integer> {
         while (b > 0) {
             if (b % 2 == 1) {
                 if (CHECKED) {
-                	checkMultiply(res, a);
+                    checkMultiply(res, a);
                 }
                 res *= a;
             }
             b /= 2;
             if (b > 0) {
-            	if (CHECKED) {
-                	checkMultiply(a, a);
-            	}
+                if (CHECKED) {
+                    checkMultiply(a, a);
+                }
                 a *= a;
             }
         }

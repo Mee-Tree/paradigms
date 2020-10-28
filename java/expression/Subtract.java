@@ -8,7 +8,7 @@ public class Subtract<T extends Number> extends AbstractBinaryOperator<T> {
     public static final String SYMBOL = " - ";
 
     public Subtract(CommonExpression<T> first, CommonExpression<T> second, Operation<T> operation) {
-        super(first, second, operation,1);
+        super(first, second, operation, 1);
     }
 
     protected T calculate(T a, T b) throws OverflowException {

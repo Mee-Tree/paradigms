@@ -9,8 +9,8 @@ import java.util.Map;
 
 public class GenericTabulator implements Tabulator {
     private static final Map<String, Operation<?>> MODES = Map.of(
-    		"s",    new ShortOperation(),
-    		"l",    new LongOperation(),
+            "s",    new ShortOperation(),
+            "l",    new LongOperation(),
             "d",    new DoubleOperation(),
             "f",    new FloatOperation(),
             "b",    new ByteOperation(),
@@ -20,7 +20,8 @@ public class GenericTabulator implements Tabulator {
 
     );
 
-    public Object[][][] tabulate(String mode, String expression, int x1, int x2, int y1, int y2, int z1, int z2) throws IllegalModeException, ParsingException {
+    public Object[][][] tabulate(String mode, String expression, int x1, int x2, int y1, int y2, int z1, int z2)
+            throws IllegalModeException, ParsingException {
         return getTable(expression, getOperation(mode), x1, x2, y1, y2, z1, z2);
     }
 
@@ -31,7 +32,8 @@ public class GenericTabulator implements Tabulator {
         throw new IllegalModeException(mode);
     }
 
-    private <T extends Number> Object[][][] getTable(String expression, Operation<T> operation, int x1, int x2, int y1, int y2, int z1, int z2) throws ParsingException {
+    private <T extends Number> Object[][][] getTable(String expression, Operation<T> operation,
+                                                     int x1, int x2, int y1, int y2, int z1, int z2) throws ParsingException {
         Object[][][] tab = new Object[x2 - x1 + 1][y2 - y1 + 1][z2 - z1 + 1];
         Parser<T> parser = new ExpressionParser<>(operation);
         TripleExpression<T> exp = parser.parse(expression);

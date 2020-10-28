@@ -9,7 +9,7 @@ public class Divide<T extends Number> extends AbstractBinaryOperator<T> {
     public static final String SYMBOL = " / ";
 
     public Divide(CommonExpression<T> first, CommonExpression<T> second, Operation<T> operation) {
-        super(first, second, operation,2);
+        super(first, second, operation, 2);
     }
 
     protected T calculate(T a, T b) throws DivisionByZeroException, OverflowException {

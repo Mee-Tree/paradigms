@@ -40,7 +40,7 @@ public class BigIntegerOperation implements Operation<BigInteger> {
         return a.multiply(b);
     }
 
-    private void checkDivide(final BigInteger a, final BigInteger b) throws DivisionByZeroException  {
+    private void checkDivide(final BigInteger a, final BigInteger b) throws DivisionByZeroException {
         if (b.equals(BigInteger.ZERO)) {
             throw new DivisionByZeroException();
         }

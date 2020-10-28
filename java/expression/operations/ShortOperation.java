@@ -23,7 +23,7 @@ public class ShortOperation implements Operation<Short> {
     }
 
     public Short count(final Short a) {
-        return (short) Integer.bitCount(a  & 0xffff);
+        return (short) Integer.bitCount(a & 0xffff);
     }
 
     public Short add(final Short a, final Short b) {
